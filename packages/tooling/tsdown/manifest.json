@@ -8,5 +8,5 @@
   "template": "packages/typescript",
   "artifactRoot": "packages",
   "tasks": ["format", "format:check", "typecheck"],
-  "publishable": false
+  "publishable": true
 }

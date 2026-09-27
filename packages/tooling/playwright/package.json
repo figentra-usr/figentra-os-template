@@ -1,17 +1,14 @@
 {
-  "name": "@figentra/vitest-config",
+  "name": "@figentra/playwright-config",
   "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/figentra-usr/figentra-os-template",
-    "directory": "packages/tooling/vitest"
+    "directory": "packages/tooling/playwright"
   },
   "type": "module",
   "exports": {
-    ".": "./vitest.ts",
-    "./preset": "./vitest.ts",
-    "./preset-decorators": "./vitest-decorators.ts",
-    "./setup": "./setup.ts"
+    ".": "./playwright.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -23,13 +20,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "reflect-metadata": "catalog:",
-    "vitest": "catalog:quality"
+    "@playwright/test": "catalog:quality"
   },
   "devDependencies": {
     "@figentra/typescript-config": "workspace:*",
-    "@types/node": "catalog:",
+    "@figentra/vitest-config": "workspace:*",
     "oxfmt": "catalog:quality",
-    "typescript": "catalog:build"
+    "typescript": "catalog:build",
+    "vitest": "catalog:quality"
   }
 }

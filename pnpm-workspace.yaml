@@ -19,8 +19,9 @@ catalogMode: prefer
 # no reason to fork a version per-topic (docs tooling, base @types/node, the default `vitest` pin
 # consumed as a plain devDependency by the config packages themselves).
 catalog:
-  "@mdx-js/mdx": 3.1.1
-  "@types/node": 26.6.3
+  '@cyclonedx/cyclonedx-npm': 6.0.1
+  '@mdx-js/mdx': 3.1.1
+  '@types/node': 26.6.3
   mint: 4.2.940
   reflect-metadata: 0.2.2
   remark-frontmatter: 5.0.0
@@ -39,6 +40,7 @@ catalogs:
     oxfmt: 0.70.0
     oxlint: 1.85.0
     vitest: 5.0.2
+    '@playwright/test': 1.63.0
 
 # Dependency lifecycle (preinstall/install/postinstall) scripts are blocked by default (pnpm supply-chain
 # security); pnpm auto-adds a package here with a placeholder the first time an install needs it, and
@@ -50,6 +52,7 @@ allowBuilds:
   # Native module: OS keychain access, transitive dep of the docs/CLI toolchain — needs its
   # postinstall to compile/fetch the prebuilt binary to function at all.
   keytar: true
+  libxmljs2: set this to true or false
   # Native module: image processing, transitive dep of the docs toolchain — same reasoning as keytar.
   sharp: true
 
@@ -65,3 +68,18 @@ minimumReleaseAgeExclude:
   - '@mintlify/scraping@4.0.1045'
   - '@mintlify/validation@0.1.875'
   - mint@4.2.940
+
+# Narrow, commented peer suppressions only — never a blanket ignore. Both entries are transitive-only
+# inside the docs toolchain (`mint`); we don't declare `react`/`react-dom`/`typescript` ourselves here,
+# so there is no catalog pin to bump. Re-check these on every `mint`/`twoslash` bump (dependency-steward).
+peerDependencyRules:
+  allowedVersions:
+    # @base-ui/react (pulled in by mint/@mintlify/*) resolves react-dom@19.3.0 against react@19.2.3;
+    # both are transitive to the docs toolchain, not a workspace dependency — no functional impact,
+    # docs build/typecheck is green under this pairing.
+    'react-dom>react': '19.2.3'
+    # @shikijs/twoslash (pulled in by mint's MDX pipeline) declares a `^5.5.0 || ^6.0.0` peer range on
+    # typescript that predates our TS7 pin; twoslash's actual usage (type-hover snippets in code
+    # samples) works fine against TS7 in practice — allow it rather than forking the `build` catalog's
+    # TS version down for one transitive tool.
+    'twoslash>typescript': '7.0.2'

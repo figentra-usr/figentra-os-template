@@ -1,7 +1,11 @@
 {
   "name": "@figentra/oxlint-config",
   "version": "0.1.0",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/figentra-usr/figentra-os-template",
+    "directory": "packages/tooling/oxlint"
+  },
   "files": [
     "*.json",
     "README.md"
@@ -16,6 +20,9 @@
     "./node": "./node.jsonc",
     "./encore": "./encore.jsonc",
     "./strict": "./strict.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "format": "oxfmt --write .",

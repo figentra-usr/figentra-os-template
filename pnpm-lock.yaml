@@ -193,6 +193,9 @@ catalogs:
       specifier: 5.0.2
       version: 5.0.2
   quality:
+    '@playwright/test':
+      specifier: 1.63.0
+      version: 1.63.0
     oxfmt:
       specifier: 0.70.0
       version: 0.70.0
@@ -219,9 +222,6 @@ importers:
       '@commitlint/types':
         specifier: 21.2.3
         version: 21.2.3
-      '@playwright/test':
-        specifier: 1.63.0
-        version: 1.63.0
       '@types/node':
         specifier: 26.6.3
         version: 26.6.3
@@ -278,6 +278,28 @@ importers:
         version: 0.70.0
       vitest:
         specifier: 'catalog:'
+        version: 5.0.2(@types/node@26.6.3)(vite@8.3.1(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.1))
+
+  packages/tooling/playwright:
+    dependencies:
+      '@playwright/test':
+        specifier: catalog:quality
+        version: 1.63.0
+    devDependencies:
+      '@figentra/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript
+      '@figentra/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest
+      oxfmt:
+        specifier: catalog:quality
+        version: 0.70.0
+      typescript:
+        specifier: catalog:build
+        version: 7.0.2
+      vitest:
+        specifier: catalog:quality
         version: 5.0.2(@types/node@26.6.3)(vite@8.3.1(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.1))
 
   packages/tooling/tsdown:

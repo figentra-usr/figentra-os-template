@@ -1,7 +1,11 @@
 {
   "name": "@figentra/typescript-config",
   "version": "0.1.0",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/figentra-usr/figentra-os-template",
+    "directory": "packages/tooling/typescript"
+  },
   "files": [
     "*.json",
     "README.md"
@@ -21,6 +25,9 @@
     "./native": "./native.json",
     "./next": "./next.json",
     "./stackra-base": "./stackra-base.json"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "format": "oxfmt --write .",

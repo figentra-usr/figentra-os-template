@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "id": "packages/tooling/vitest",
+  "id": "packages/tooling/playwright",
   "kind": "package",
-  "name": "vitest",
+  "name": "playwright",
   "version": "0.1.0",
   "runtime": "typescript",
   "template": "packages/typescript",
   "artifactRoot": "packages",
-  "tasks": ["format", "format:check", "typecheck"],
+  "tasks": ["format", "format:check", "typecheck", "test"],
   "publishable": true
 }
