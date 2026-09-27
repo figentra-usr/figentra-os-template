@@ -76,7 +76,7 @@ function main() {
     }
     console.error(
       '\nAllowed licenses: ' +
-        [...ALLOWED_LICENSES].sort().join(', ') +
+        [...ALLOWED_LICENSES].toSorted().join(', ') +
         '\nIf this license is genuinely fine, add a documented entry to ALLOWED_LICENSES or ' +
         'PACKAGE_EXCEPTIONS in scripts/license-check.mjs — never widen it silently.',
     );

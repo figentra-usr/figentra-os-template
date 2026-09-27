@@ -6,6 +6,9 @@
   rangeStrategy: 'pin',
   // Opens a periodic PR to refresh the lockfile even when no manifest version changed.
   lockFileMaintenance: { enabled: true },
+  // Dedicated, immediate PRs for known vulnerabilities (osv-scanner-backed), independent of the
+  // normal update schedule — labeled so they're triaged ahead of routine dependency bumps.
+  vulnerabilityAlerts: { enabled: true, labels: ['security'] },
   packageRules: [
     {
       // Repository tooling moves together — one PR per bump instead of one per package, since these

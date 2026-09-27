@@ -52,7 +52,10 @@ allowBuilds:
   # Native module: OS keychain access, transitive dep of the docs/CLI toolchain — needs its
   # postinstall to compile/fetch the prebuilt binary to function at all.
   keytar: true
-  libxmljs2: set this to true or false
+  # Native XML binding, optional peer of @cyclonedx/cyclonedx-library (transitive to
+  # @cyclonedx/cyclonedx-npm) — only exercised for `--output-format xml`. Our SBOM step only ever
+  # generates JSON, so denying the native build avoids an unneeded libxml2 compile on every install.
+  libxmljs2: false
   # Native module: image processing, transitive dep of the docs toolchain — same reasoning as keytar.
   sharp: true
 

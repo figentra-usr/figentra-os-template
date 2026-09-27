@@ -24,4 +24,16 @@ jobs:
           publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # SBOM covers what actually got installed (node_modules), independent of whether this run
+      # published a new version — `--ignore-npm-errors` is required because cyclonedx-npm shells out to
+      # `npm ls` internally, which reports the devDependency-only peer graphs of transitive tools
+      # (e.g. old CJS packages' unmet `mocha`/`nyc`/etc peers) as errors even though pnpm installed fine.
+      - name: Generate SBOM (CycloneDX)
+        run: pnpm exec cyclonedx-npm --ignore-npm-errors --output-format json --output-file sbom.cdx.json
+      - name: Upload SBOM as release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.cdx.json
+          retention-days: 90
       # Deployment is delegated to the Figentra CLI/platform, not defined here.

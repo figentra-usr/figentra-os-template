@@ -30,3 +30,7 @@ jobs:
       - run: pnpm knip
       - name: Secret scan
         run: gitleaks git --redact --verbose
+      - name: Dependency vulnerability audit (production deps, high/critical fails)
+        run: pnpm audit --audit-level=high --prod
+      - name: License compliance
+        run: pnpm licenses:check
