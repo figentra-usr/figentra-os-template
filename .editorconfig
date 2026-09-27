@@ -1,0 +1,15 @@
+# Editor-agnostic baseline; oxfmt/oxlint own actual code style — this only covers what they don't
+# (line endings, charset) plus editors that never run a formatter (this file, itself).
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Markdown uses trailing double-space as a hard-break; stripping it silently breaks line breaks.
+[*.md]
+trim_trailing_whitespace = false

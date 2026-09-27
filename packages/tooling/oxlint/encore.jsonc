@@ -1,0 +1,49 @@
+// Figentra file contract:
+// Purpose: the Encore.ts application. Carries the architecture's dependency rule (plan §1.2):
+//          os/** may never import academorix/** or medical/**, and no service imports another's internal/.
+//          CI fails the build on a violation; .claude/hooks/guard-paths.mjs and post-write-checks.mjs
+//          catch it earlier for agents.
+// Owner: architecture-guardian · Secrets: forbidden
+{
+  "extends": ["./node.jsonc"],
+  "overrides": [
+    {
+      "files": ["**/os/**/*.ts", "**/services/figentra/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "**/academorix/**",
+                  "**/medical/**",
+                  "~encore/clients/academorix",
+                  "~encore/clients/medical",
+                  "@figentra/academorix-*",
+                ],
+                "message": "os/** and services/figentra/** may never import from academorix/** or medical/** (architecture plan §1.2, ADR-0166 D4). The platform is product-agnostic; move the dependency the other way or publish a contract in packages/os/contracts.",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["../*/internal/**", "../../*/internal/**", "../../../*/internal/**"],
+                "message": "A service's internal/ folder is private. Call it through ~encore/clients or its exported contract.",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+}

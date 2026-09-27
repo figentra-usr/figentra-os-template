@@ -1,0 +1,28 @@
+// Figentra file contract:
+// Purpose: Next.js 16 apps (apps/figentra/landing, apps/figentra/console, apps/academorix). Mirrors create-next-app's tsconfig
+//          with the base strictness on top; `plugins: next` powers typed routes and `incremental` keeps `next build` fast.
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — next",
+  "extends": "./react.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "incremental": true,
+    "verbatimModuleSyntax": false,
+    "declaration": false,
+    "declarationMap": false,
+    "types": ["node"],
+    "plugins": [{ "name": "next" }]
+  },
+  "include": [
+    "${configDir}/next-env.d.ts",
+    "${configDir}/**/*.ts",
+    "${configDir}/**/*.tsx",
+    "${configDir}/**/*.mts",
+    "${configDir}/.next/types/**/*.ts",
+    "${configDir}/.next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules", ".next", "dist"]
+}

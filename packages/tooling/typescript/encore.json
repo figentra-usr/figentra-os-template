@@ -1,0 +1,20 @@
+// Figentra file contract:
+// Purpose: the Encore.ts application (services/). encore.dev ships .ts sources, so skipLibCheck does
+//          not cover it and four baseline flags would fire inside the package; oxlint enforces the same
+//          hygiene (no-unused-vars, consistent-type-imports) on our own code instead. `declaration` is off:
+//          the app emits nothing (noEmit) and Better Auth's inferred instance type cannot be serialised for
+//          declaration emit (TS7056/TS2742 — its documented requirement, ADR-0153).
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — encore",
+  "extends": "./node.json",
+  "compilerOptions": {
+    "verbatimModuleSyntax": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitOverride": false,
+    "declaration": false,
+    "declarationMap": false,
+    "paths": { "~encore/*": ["${configDir}/encore.gen/*"] }
+  }
+}

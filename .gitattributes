@@ -1,0 +1,17 @@
+# Purpose: normalize line endings across contributors' OSes and keep generated/binary files out of
+# diff review (GitHub language stats and PR diffs).
+* text=auto eol=lf
+
+# -diff: never render a diff for the lockfile (it's huge and machine-written); linguist-generated
+# on both: excluded from GitHub's language stats and collapsed by default in PR diffs.
+pnpm-lock.yaml -diff linguist-generated=true
+.figentra/generated/** linguist-generated=true
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,28 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: ['config:recommended', ':semanticCommits', 'group:monorepos'],
+  // Exact versions everywhere (no ranges) so a lockfile diff always shows the real version bump —
+  // matches the pnpm catalog / mise.toml convention of pinning, not ranging.
+  rangeStrategy: 'pin',
+  // Opens a periodic PR to refresh the lockfile even when no manifest version changed.
+  lockFileMaintenance: { enabled: true },
+  packageRules: [
+    {
+      // Repository tooling moves together — one PR per bump instead of one per package, since these
+      // rarely need independent review.
+      groupName: 'tooling',
+      matchPackageNames: [
+        'turbo',
+        'typescript',
+        'oxlint',
+        'oxfmt',
+        'knip',
+        'husky',
+        'vitest',
+        '@playwright/test',
+        '@changesets/**',
+        '@commitlint/**',
+      ],
+    },
+  ],
+}

@@ -1,0 +1,54 @@
+// Figentra file contract:
+// Purpose: the single TypeScript baseline every other preset extends — strict everything, no DOM, no JSX.
+//          Workspaces never extend this directly; they pick a role preset (node/encore/react/vite/native/worker).
+// Scope: apps/*, services/*, packages/*
+// Owner: release-operations
+// Secrets: forbidden
+// Change policy: a compiler-option change is a toolchain change and needs an ADR.
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "@figentra/typescript-config — base",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnreachableCode": false,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmit": true,
+    // Workspace packages are consumed as source (no dist) and the Encore runtime loads them with Node's own
+    // ESM loader (type stripping), which has no extensionless resolution: relative imports inside packages/*
+    // must say `./x.ts`. Legal here because nothing emits (noEmit); the native preset already relied on it.
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true,
+    "types": [],
+    // ${configDir} (TS ≥ 5.5) resolves inside the EXTENDING workspace, not this package.
+    "paths": { "@/*": ["${configDir}/src/*"] }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".turbo",
+    "coverage",
+    "encore.gen",
+    ".expo",
+    ".astro",
+    ".wrangler"
+  ]
+}

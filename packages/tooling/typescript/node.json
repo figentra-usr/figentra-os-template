@@ -1,0 +1,8 @@
+// Figentra file contract:
+// Purpose: Node 24 libraries and scripts (packages/*, tools/*) — base + node types.
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — node",
+  "extends": "./base.json",
+  "compilerOptions": { "types": ["node"] }
+}

@@ -1,0 +1,9 @@
+# Read by oxfmt as its ignore file (oxfmt falls back to .gitignore + .prettierignore when no
+# --ignore-path is given). Prettier itself is not used — this filename is only a convention oxfmt honors.
+pnpm-lock.yaml
+**/dist/
+**/coverage/
+test-results/
+.figentra/cache/
+.figentra/generated/
+.turbo/

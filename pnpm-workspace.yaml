@@ -1,0 +1,67 @@
+# Figentra file contract:
+# Purpose: pnpm workspace membership plus the version catalogs every workspace's `catalog:`/`catalog:<name>`
+#          references resolve against, and the build-script approvals installs need.
+# Scope: every workspace under apps/*, services/*, packages/* (including packages/tooling/*) —
+# templates/* is scaffold content copied out by the Figentra CLI, not a live workspace member here.
+# Owner: release-operations (dependency-steward reviews catalog/version changes)
+# Secrets: forbidden
+packages:
+  - apps/*
+  - services/*
+  - packages/*
+  - packages/tooling/*
+
+# `prefer`: `pnpm add` reuses an existing catalog entry's range when one matches, instead of always
+# writing a plain inline version — keeps new installs from silently drifting off the shared pin.
+catalogMode: prefer
+
+# Default catalog (`catalog:`): dependencies shared by exactly one consuming workspace today but with
+# no reason to fork a version per-topic (docs tooling, base @types/node, the default `vitest` pin
+# consumed as a plain devDependency by the config packages themselves).
+catalog:
+  "@mdx-js/mdx": 3.1.1
+  "@types/node": 26.6.3
+  mint: 4.2.940
+  reflect-metadata: 0.2.2
+  remark-frontmatter: 5.0.0
+  remark-gfm: 4.0.1
+  vitest: 5.0.2
+
+catalogs:
+  # Toolchain packages that build TypeScript output — kept out of `quality` because a build-tool bump
+  # (typescript, tsdown) is a different risk/cadence than a lint/format/test-tool bump.
+  build:
+    typescript: 7.0.2
+    tsdown: 0.23.0
+  # Format/lint/test tools every workspace's `check` script runs. Named separately from `build` so
+  # Renovate/dependency-steward can group and review the two independently.
+  quality:
+    oxfmt: 0.70.0
+    oxlint: 1.85.0
+    vitest: 5.0.2
+
+# Dependency lifecycle (preinstall/install/postinstall) scripts are blocked by default (pnpm supply-chain
+# security); pnpm auto-adds a package here with a placeholder the first time an install needs it, and
+# install fails (ERR_PNPM_IGNORED_BUILDS) until every entry is reviewed and set true/false.
+allowBuilds:
+  # Telemetry/analytics pingback on install (transitive dep of the docs toolchain) — no build output
+  # this repo needs; denied rather than silently phoning home on every install.
+  '@scarf/scarf': false
+  # Native module: OS keychain access, transitive dep of the docs/CLI toolchain — needs its
+  # postinstall to compile/fetch the prebuilt binary to function at all.
+  keytar: true
+  # Native module: image processing, transitive dep of the docs toolchain — same reasoning as keytar.
+  sharp: true
+
+# pnpm's default minimumReleaseAge (1 day) blocked these specific mint/@mintlify versions as too
+# freshly published; auto-added by `pnpm install` itself rather than hand-picked — exempts exactly
+# the versions the lockfile needs so docs tooling installs instead of falling back to an older release.
+minimumReleaseAgeExclude:
+  - '@mintlify/cli@4.0.1543'
+  - '@mintlify/common@1.0.1175'
+  - '@mintlify/link-rot@3.0.1380'
+  - '@mintlify/prebuild@1.0.1332'
+  - '@mintlify/previewing@4.0.1404'
+  - '@mintlify/scraping@4.0.1045'
+  - '@mintlify/validation@0.1.875'
+  - mint@4.2.940

@@ -1,0 +1,23 @@
+// Figentra file contract:
+// Purpose: Expo / React Native (apps/mobile). Mirrors expo/tsconfig.base with our strictness on top;
+//          `customConditions: react-native` picks the RN entry of dual packages.
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — native",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM"],
+    "jsx": "react-jsx",
+    "customConditions": ["react-native"],
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "resolvePackageJsonImports": false,
+    "verbatimModuleSyntax": false,
+    "declaration": false,
+    "declarationMap": false,
+    "types": []
+  },
+  "exclude": ["node_modules", "**/Pods/**", ".expo", "dist"]
+}

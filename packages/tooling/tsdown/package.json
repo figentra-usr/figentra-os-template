@@ -1,0 +1,25 @@
+{
+  "name": "@figentra/tsdown-config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tsdown": "catalog:build"
+  },
+  "devDependencies": {
+    "@figentra/typescript-config": "workspace:*",
+    "@types/node": "catalog:",
+    "oxfmt": "catalog:quality",
+    "typescript": "catalog:build",
+    "vitest": "catalog:"
+  }
+}

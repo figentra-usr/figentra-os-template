@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "kind": "workspace",
+  "package": "@figentra/docs",
+  "runtime": "typescript"
+}

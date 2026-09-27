@@ -1,0 +1,13 @@
+# Purpose: pre-commit and CI secret scanning (SECURITY.md). Runs against gitleaks' own default rule
+# set; this file only extends/allowlists, it never replaces the base rules.
+title = "figentra gitleaks config"
+
+[extend]
+# Keep gitleaks' built-in provider/pattern rules instead of maintaining our own from scratch.
+useDefault = true
+
+[allowlist]
+# .env.example intentionally holds only placeholder keys; the lockfile is machine-written and can
+# contain package-name substrings that look like secret patterns (false positives).
+description = "Template files that intentionally contain no secrets"
+paths = ['''\.env\.example$''', '''pnpm-lock\.yaml$''']

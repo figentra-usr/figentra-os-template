@@ -1,0 +1,6 @@
+# Purpose: pins the toolchain versions every contributor and CI job runs. `pnpm` here must match
+# `packageManager` in package.json (corepack reads that one); a mismatch is a bug, not a choice.
+[tools]
+node = "24"
+pnpm = "12.6.0"
+gitleaks = "8.30.1"

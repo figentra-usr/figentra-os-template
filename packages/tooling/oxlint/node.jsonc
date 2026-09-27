@@ -1,0 +1,4 @@
+// Figentra file contract:
+// Purpose: Node libraries and scripts (packages/*, tooling/*).
+// Owner: release-operations · Secrets: forbidden
+{ "extends": ["./base.jsonc"], "env": { "node": true } }

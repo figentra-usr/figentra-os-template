@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "id": "packages/tooling/vitest",
+  "kind": "package",
+  "name": "vitest",
+  "version": "0.1.0",
+  "runtime": "typescript",
+  "template": "packages/typescript",
+  "artifactRoot": "packages",
+  "tasks": ["format", "format:check", "typecheck"],
+  "publishable": false
+}

@@ -1,0 +1,16 @@
+// Purpose: Knip hygiene scan config (`pnpm knip` — unused files, exports, dependencies).
+// Owner: release-operations
+{
+  "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  "workspaces": {
+    // Root workspace: only the *.config.ts files are "entry" — nothing else here is executable.
+    ".": {
+      "entry": ["*.config.ts"],
+      // Provided by the Figentra CLI; not yet published.
+      "ignoreDependencies": ["@figentra/config"],
+    },
+    "apps/*": {
+      "project": ["src/**/*.ts"],
+    },
+  },
+}

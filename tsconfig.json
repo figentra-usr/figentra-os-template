@@ -1,0 +1,25 @@
+// Purpose: root tsconfig — editor/IDE project root only ("files": [] — nothing actually compiles from
+// here). Workspaces extend packages/tooling/typescript's role presets, not this file.
+// Owner: release-operations
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "moduleDetection": "force",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  // No files compiled from the root; this exists so editors/tsc find a project root at the repo top.
+  "files": []
+}

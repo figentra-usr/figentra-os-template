@@ -1,0 +1,76 @@
+// Figentra file contract:
+// Purpose: shared oxlint base — correctness is an error, suspicious a warning, `any` and unused code are errors.
+//          Do NOT extend directly from a workspace; extend a role preset (node/encore/react/native/worker).
+// Scope: every TypeScript/JavaScript file in the repo
+// Owner: release-operations
+// Secrets: forbidden
+{
+  "$schema": "../../../node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import"],
+  "categories": { "correctness": "error", "suspicious": "warn" },
+  "env": { "es2024": true },
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/consistent-type-imports": "error",
+    // Mutating sort on a freshly-built local array is fine; toSorted() is noise here.
+    "unicorn/no-array-sort": "off",
+    // Allow underscore prefix for internal/private identifiers (common pattern)
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id",
+          "_type",
+          "_key",
+          "_ref",
+          "_REF",
+          "_count",
+          "_input",
+          "_provider",
+          "_citation",
+          "_updatedAt",
+          "_placesClient",
+          "_routesClient",
+          "_scanner",
+          "_timers",
+          "_positionals",
+          "_esModule",
+          "__esModule",
+          "__typename",
+          "__dirname",
+          "__filename",
+          "__create",
+          "__defProp",
+          "__getOwnPropDesc",
+          "__getOwnPropNames",
+          "__getProtoOf",
+          "__hasOwnProp",
+          "__esmMin",
+          "__commonJSMin",
+          "__exportAll",
+          "__copyProps",
+          "__toESM",
+          "__require",
+          "__toCommonJS",
+        ],
+      },
+    ],
+    // Empty files are allowed for placeholders, test setup, and internal modules
+    "unicorn/no-empty-file": "off",
+    // Allow side-effect imports for CSS, polyfills, and config
+    "import/no-unassigned-import": "off",
+  },
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/node_modules/**",
+    "**/.turbo/**",
+    "**/*.d.ts",
+    "**/encore.gen/**",
+    ".agents/**",
+    ".claude/skills/**",
+  ],
+}

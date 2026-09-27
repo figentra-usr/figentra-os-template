@@ -1,0 +1,12 @@
+// Figentra file contract:
+// Purpose: repo-wide oxfmt style. Prettier is not used (AGENTS.md Forbidden); oxfmt reads this
+//          directly, and .prettierignore doubles as oxfmt's ignore file.
+// Scope: every workspace (oxfmt has no per-workspace override in this template)
+// Owner: release-operations
+// Secrets: forbidden
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  // Reduces diff noise on array/object edits (adding a line doesn't touch the previous line).
+  "trailingComma": "all"
+}

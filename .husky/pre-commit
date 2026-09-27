@@ -1,0 +1,5 @@
+pnpm exec oxfmt --check
+pnpm exec oxlint
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks git --pre-commit --staged --redact
+fi

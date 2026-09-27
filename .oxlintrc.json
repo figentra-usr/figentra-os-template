@@ -1,0 +1,27 @@
+// Figentra file contract:
+// Purpose: root oxlint config. ESLint is not used (AGENTS.md Forbidden); this is the actual lint
+//          config `pnpm lint` runs. packages/tooling/oxlint holds per-role presets consumed via
+//          package.json exports, but this root file is what governs root-level scripts and any
+//          workspace without its own .oxlintrc.json.
+// Scope: whole repo unless a nested .oxlintrc.json overrides it
+// Owner: release-operations
+// Secrets: forbidden
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  // `vitest` plugin enabled here; packages/tooling/oxlint's shared presets do not all include it.
+  "plugins": ["typescript", "unicorn", "oxc", "import", "vitest"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "ignorePatterns": ["**/dist/**", "**/coverage/**", ".figentra/**", ".turbo/**"],
+  "rules": {
+    // CSS side-effect imports (`import './x.css'`) are a real pattern, not an accidental unused import.
+    "import/no-unassigned-import": [
+      "warn",
+      {
+        "allow": ["**/*.css"]
+      }
+    ]
+  }
+}

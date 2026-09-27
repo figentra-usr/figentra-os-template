@@ -1,0 +1,4 @@
+{
+  "extends": "@figentra/typescript-config/node",
+  "include": ["*.ts"]
+}

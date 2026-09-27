@@ -1,0 +1,35 @@
+# Purpose: workspace-wide ignore rules. Per-package build outputs live under their own dirs (dist/,
+# build/, .astro/, etc.) but are covered here once rather than per package.json.
+
+# dependencies
+node_modules/
+.pnpm-store/
+.cache/
+
+# build and test output
+dist/
+build/
+coverage/
+test-results/
+playwright-report/
+*.tsbuildinfo
+
+# turbo (keep the directory marker so `.turbo/` itself stays tracked as an empty dir)
+.turbo/*
+!.turbo/.gitignore
+
+# environment — only the example is committed; real values come from Infisical/Doppler at runtime
+.env*
+!.env.example
+
+# figentra machine state (keep the directory markers so a fresh clone has the dirs the CLI expects)
+.figentra/cache/*
+!.figentra/cache/.gitkeep
+.figentra/generated/*
+!.figentra/generated/.gitkeep
+.figentra/state/*
+!.figentra/state/.gitkeep
+
+# os / editor
+.DS_Store
+*.log

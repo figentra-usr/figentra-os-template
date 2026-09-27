@@ -1,0 +1,34 @@
+{
+  "name": "@figentra/typescript-config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "*.json",
+    "README.md"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./base.json",
+    "./base": "./base.json",
+    "./library": "./library.json",
+    "./decorators": "./decorators.json",
+    "./vite-node": "./vite-node.json",
+    "./worker": "./worker.json",
+    "./node": "./node.json",
+    "./encore": "./encore.json",
+    "./react": "./react.json",
+    "./vite": "./vite.json",
+    "./native": "./native.json",
+    "./next": "./next.json",
+    "./stackra-base": "./stackra-base.json"
+  },
+  "scripts": {
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "oxfmt": "catalog:quality",
+    "vitest": "catalog:"
+  }
+}

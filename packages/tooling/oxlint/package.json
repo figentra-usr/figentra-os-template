@@ -1,0 +1,29 @@
+{
+  "name": "@figentra/oxlint-config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "*.json",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./base.jsonc",
+    "./base": "./base.jsonc",
+    "./decorators": "./decorators.json",
+    "./native": "./native.json",
+    "./react": "./react.json",
+    "./worker": "./worker.json",
+    "./node": "./node.jsonc",
+    "./encore": "./encore.jsonc",
+    "./strict": "./strict.json"
+  },
+  "scripts": {
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "oxfmt": "catalog:quality",
+    "vitest": "catalog:"
+  }
+}

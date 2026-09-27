@@ -1,0 +1,9 @@
+// Figentra file contract:
+// Purpose: Cloudflare Workers (workers/*) — ONLY by ADR; the API path never goes through a Worker (plan §14.3).
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — worker",
+  "extends": "./base.json",
+  "compilerOptions": { "lib": ["ES2022", "WebWorker"], "types": ["@cloudflare/workers-types"] },
+  "exclude": ["node_modules", "dist", ".wrangler", "coverage"]
+}

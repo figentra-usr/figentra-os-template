@@ -1,0 +1,8 @@
+// Figentra file contract:
+// Purpose: React 19 libraries (packages/ui-*): DOM lib + automatic JSX runtime.
+// Owner: release-operations · Secrets: forbidden
+{
+  "display": "@figentra/typescript-config — react",
+  "extends": "./base.json",
+  "compilerOptions": { "lib": ["ES2022", "DOM", "DOM.Iterable"], "jsx": "react-jsx" }
+}
