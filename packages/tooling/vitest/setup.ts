@@ -4,4 +4,4 @@
  * `reflect-metadata` must be loaded before the first decorated class is evaluated; a package's
  * `test/setup.ts` imports this module (or `@figentra/vitest-config/preset-decorators` registers it).
  */
-import "reflect-metadata";
+import 'reflect-metadata';

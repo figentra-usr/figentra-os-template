@@ -1,4 +1,4 @@
-import { defineConfig, type Options } from "tsdown";
+import { defineConfig, type Options } from 'tsdown';
 
 export interface LibraryOptions {
   /**
@@ -25,26 +25,26 @@ const DECORATOR_CONFLICT = /`transform\.decorator`/;
  * tsdown shallow-merges `inputOptions`, so the function form is required to add `transform.decorator`
  * without dropping the `target` / `define` / `inject` tsdown already derived.
  */
-const withDecorators: NonNullable<Options["inputOptions"]> = (input) => ({
+const withDecorators: NonNullable<Options['inputOptions']> = (input) => ({
   ...input,
   transform: {
     ...input.transform,
     decorator: { legacy: true, emitDecoratorMetadata: true },
   },
   onLog: (level, log, defaultHandler) => {
-    if (log.code === "CONFIGURATION_FIELD_CONFLICT" && DECORATOR_CONFLICT.test(log.message)) return;
+    if (log.code === 'CONFIGURATION_FIELD_CONFLICT' && DECORATOR_CONFLICT.test(log.message)) return;
     if (input.onLog) input.onLog(level, log, defaultHandler);
     else defaultHandler(level, log);
   },
 });
 
 export function library(
-  entries: Record<string, string> = { index: "src/index.ts" },
+  entries: Record<string, string> = { index: 'src/index.ts' },
   options: LibraryOptions = {},
 ) {
   return defineConfig({
     entry: entries,
-    format: ["esm"],
+    format: ['esm'],
     dts: true,
     sourcemap: true,
     clean: true,

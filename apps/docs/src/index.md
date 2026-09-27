@@ -7,12 +7,12 @@ description: Platform architecture, product blueprints, engineering standards, r
 
 This is a blank template repository — most sections below are intentionally empty right now. Each folder's index page says plainly what's missing and who should fill it in as the project grows.
 
-| Tab           | What lives there                                                                        |
-| ------------- | ----------------------------------------------------------------------------------------- |
-| **Platform**  | The architecture plan, engineering standards, the engineering system (roster, gates, SDLC), runbooks |
-| **Products**  | Product blueprints and plans                                                              |
-| **Company**   | Company information, compliance and legal                                                 |
-| **Decisions** | Every ADR. Numbering is continuous; nothing is deleted, only superseded                   |
+| Tab           | What lives there                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| **Platform**  | The architecture plan, engineering standards, the engineering system (roster, gates, SDLC), runbooks                      |
+| **Products**  | Product blueprints and plans                                                                                              |
+| **Company**   | Company information, compliance and legal                                                                                 |
+| **Decisions** | Every ADR. Numbering is continuous; nothing is deleted, only superseded                                                   |
 | **Legacy**    | Superseded documents kept for context, once this project has any. Where they conflict with current docs, current docs win |
 
 ## For agents

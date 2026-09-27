@@ -30,39 +30,27 @@
         "groups": [
           {
             "group": "Start",
-            "pages": [
-              "index"
-            ]
+            "pages": ["index"]
           },
           {
             "group": "Architecture",
-            "pages": [
-              "platform/index"
-            ]
+            "pages": ["platform/index"]
           },
           {
             "group": "Standards",
-            "pages": [
-              "engineering/standards/index"
-            ]
+            "pages": ["engineering/standards/index"]
           },
           {
             "group": "Engineering system",
-            "pages": [
-              "engineering/system/index"
-            ]
+            "pages": ["engineering/system/index"]
           },
           {
             "group": "Engineering",
-            "pages": [
-              "engineering/index"
-            ]
+            "pages": ["engineering/index"]
           },
           {
             "group": "Runbooks",
-            "pages": [
-              "runbooks/index"
-            ]
+            "pages": ["runbooks/index"]
           }
         ]
       },
@@ -71,15 +59,11 @@
         "groups": [
           {
             "group": "Products",
-            "pages": [
-              "products/index"
-            ]
+            "pages": ["products/index"]
           },
           {
             "group": "Plans",
-            "pages": [
-              "plans/index"
-            ]
+            "pages": ["plans/index"]
           }
         ]
       },
@@ -88,21 +72,15 @@
         "groups": [
           {
             "group": "Company",
-            "pages": [
-              "company/index"
-            ]
+            "pages": ["company/index"]
           },
           {
             "group": "Compliance",
-            "pages": [
-              "compliance/index"
-            ]
+            "pages": ["compliance/index"]
           },
           {
             "group": "Legal",
-            "pages": [
-              "legal/index"
-            ]
+            "pages": ["legal/index"]
           }
         ]
       },
@@ -111,9 +89,7 @@
         "groups": [
           {
             "group": "ADRs",
-            "pages": [
-              "adr/index"
-            ]
+            "pages": ["adr/index"]
           }
         ]
       },
@@ -122,9 +98,7 @@
         "groups": [
           {
             "group": "Superseded",
-            "pages": [
-              "legacy/index"
-            ]
+            "pages": ["legacy/index"]
           }
         ]
       }
