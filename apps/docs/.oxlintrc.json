@@ -1,1 +1,0 @@
-{ "extends": ["./node_modules/@figentra/oxlint-config/base.jsonc"] }

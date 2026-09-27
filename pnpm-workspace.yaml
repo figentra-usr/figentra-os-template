@@ -16,16 +16,12 @@ packages:
 catalogMode: prefer
 
 # Default catalog (`catalog:`): dependencies shared by exactly one consuming workspace today but with
-# no reason to fork a version per-topic (docs tooling, base @types/node, the default `vitest` pin
-# consumed as a plain devDependency by the config packages themselves).
+# no reason to fork a version per-topic (base @types/node, the default `vitest` pin consumed as a
+# plain devDependency by the config packages themselves).
 catalog:
   '@cyclonedx/cyclonedx-npm': 6.0.1
-  '@mdx-js/mdx': 3.1.1
   '@types/node': 26.6.3
-  mint: 4.2.940
   reflect-metadata: 0.2.2
-  remark-frontmatter: 5.0.0
-  remark-gfm: 4.0.1
   vitest: 5.0.2
 
 catalogs:
@@ -46,43 +42,7 @@ catalogs:
 # security); pnpm auto-adds a package here with a placeholder the first time an install needs it, and
 # install fails (ERR_PNPM_IGNORED_BUILDS) until every entry is reviewed and set true/false.
 allowBuilds:
-  # Telemetry/analytics pingback on install (transitive dep of the docs toolchain) — no build output
-  # this repo needs; denied rather than silently phoning home on every install.
-  '@scarf/scarf': false
-  # Native module: OS keychain access, transitive dep of the docs/CLI toolchain — needs its
-  # postinstall to compile/fetch the prebuilt binary to function at all.
-  keytar: true
   # Native XML binding, optional peer of @cyclonedx/cyclonedx-library (transitive to
   # @cyclonedx/cyclonedx-npm) — only exercised for `--output-format xml`. Our SBOM step only ever
   # generates JSON, so denying the native build avoids an unneeded libxml2 compile on every install.
   libxmljs2: false
-  # Native module: image processing, transitive dep of the docs toolchain — same reasoning as keytar.
-  sharp: true
-
-# pnpm's default minimumReleaseAge (1 day) blocked these specific mint/@mintlify versions as too
-# freshly published; auto-added by `pnpm install` itself rather than hand-picked — exempts exactly
-# the versions the lockfile needs so docs tooling installs instead of falling back to an older release.
-minimumReleaseAgeExclude:
-  - '@mintlify/cli@4.0.1543'
-  - '@mintlify/common@1.0.1175'
-  - '@mintlify/link-rot@3.0.1380'
-  - '@mintlify/prebuild@1.0.1332'
-  - '@mintlify/previewing@4.0.1404'
-  - '@mintlify/scraping@4.0.1045'
-  - '@mintlify/validation@0.1.875'
-  - mint@4.2.940
-
-# Narrow, commented peer suppressions only — never a blanket ignore. Both entries are transitive-only
-# inside the docs toolchain (`mint`); we don't declare `react`/`react-dom`/`typescript` ourselves here,
-# so there is no catalog pin to bump. Re-check these on every `mint`/`twoslash` bump (dependency-steward).
-peerDependencyRules:
-  allowedVersions:
-    # @base-ui/react (pulled in by mint/@mintlify/*) resolves react-dom@19.3.0 against react@19.2.3;
-    # both are transitive to the docs toolchain, not a workspace dependency — no functional impact,
-    # docs build/typecheck is green under this pairing.
-    'react-dom>react': '19.2.3'
-    # @shikijs/twoslash (pulled in by mint's MDX pipeline) declares a `^5.5.0 || ^6.0.0` peer range on
-    # typescript that predates our TS7 pin; twoslash's actual usage (type-hover snippets in code
-    # samples) works fine against TS7 in practice — allow it rather than forking the `build` catalog's
-    # TS version down for one transitive tool.
-    'twoslash>typescript': '7.0.2'

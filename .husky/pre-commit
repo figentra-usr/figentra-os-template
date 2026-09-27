@@ -6,10 +6,15 @@ set -e
 
 # Scoped to staged files only — checking the whole tree here blocks a commit on files a
 # concurrent branch/session/agent left mid-edit, even when your own staged diff is clean.
-staged=$(git diff --cached --name-only --diff-filter=ACMR -- '*.js' '*.jsx' '*.ts' '*.tsx' '*.mjs' '*.cjs' '*.json' '*.jsonc' '*.css' '*.md' '*.mdx' '*.yml' '*.yaml')
-if [ -n "$staged" ]; then
-  echo "$staged" | xargs pnpm exec oxfmt --check
-  echo "$staged" | xargs pnpm exec oxlint
+# oxfmt formats markdown/yaml/json/css too; oxlint only understands JS/TS and errors (rather
+# than no-oping) if given zero lintable files, so it gets a narrower filter than oxfmt.
+staged_fmt=$(git diff --cached --name-only --diff-filter=ACMR -- '*.js' '*.jsx' '*.ts' '*.tsx' '*.mjs' '*.cjs' '*.json' '*.jsonc' '*.css' '*.md' '*.mdx' '*.yml' '*.yaml')
+staged_lint=$(git diff --cached --name-only --diff-filter=ACMR -- '*.js' '*.jsx' '*.ts' '*.tsx' '*.mjs' '*.cjs')
+if [ -n "$staged_fmt" ]; then
+  echo "$staged_fmt" | xargs pnpm exec oxfmt --check
+fi
+if [ -n "$staged_lint" ]; then
+  echo "$staged_lint" | xargs pnpm exec oxlint
 fi
 if command -v gitleaks >/dev/null 2>&1; then
   gitleaks git --pre-commit --staged --redact
