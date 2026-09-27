@@ -34,6 +34,9 @@ Instructions for AI coding agents working in this repository.
 - `.env.staging`, `.env.production`, or any committed environment values.
 - Secrets in files, tests, fixtures, logs or commit messages.
 - Dockerfiles, Makefiles, shell scripts, Go workspaces, or provider-specific IaC in this template.
+  A non-TypeScript service runtime (Go, Python) is the one place a Dockerfile is expected — but it
+  belongs in `templates/services/<runtime>` as scaffolding the Figentra CLI generates, once that CLI
+  exists, not hand-authored here.
 - Business logic in `apps/`.
 
 ## Source of truth
