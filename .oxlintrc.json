@@ -16,11 +16,13 @@
   },
   "ignorePatterns": ["**/dist/**", "**/coverage/**", ".figentra/**", ".turbo/**"],
   "rules": {
-    // CSS side-effect imports (`import './x.css'`) are a real pattern, not an accidental unused import.
+    // CSS side-effect imports (`import './x.css'`) and `reflect-metadata` (must be loaded before the
+    // first decorated class evaluates; see packages/tooling/vitest/AGENTS.md) are real side-effect
+    // imports, not accidental unused ones.
     "import/no-unassigned-import": [
       "warn",
       {
-        "allow": ["**/*.css"]
+        "allow": ["**/*.css", "reflect-metadata"]
       }
     ]
   }

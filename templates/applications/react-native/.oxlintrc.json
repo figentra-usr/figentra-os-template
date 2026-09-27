@@ -1,0 +1,34 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "oxc", "import", "unicorn"],
+  "categories": { "correctness": "error", "suspicious": "warn" },
+  "env": { "es2024": true, "shared-node-browser": true, "jest": true },
+  "globals": {
+    "__DEV__": "readonly",
+    "global": "readonly",
+    "HermesInternal": "readonly",
+    "ErrorUtils": "readonly"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-unused-vars": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/consistent-type-imports": "error",
+    "unicorn/no-array-sort": "off",
+    "unicorn/no-empty-file": "off",
+    "import/no-unassigned-import": "off",
+    "react/jsx-no-target-blank": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/rules-of-hooks": "error"
+  },
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/build/**",
+    "**/coverage/**",
+    "**/node_modules/**",
+    "**/.turbo/**",
+    "**/*.d.ts",
+    ".expo/**",
+    "expo-env.d.ts"
+  ]
+}
