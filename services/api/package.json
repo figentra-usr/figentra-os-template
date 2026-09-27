@@ -14,5 +14,14 @@
     "test:watch": "vitest"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@figentra/oxlint-config": "workspace:*",
+    "@figentra/typescript-config": "workspace:*",
+    "@figentra/vitest-config": "workspace:*",
+    "@types/node": "catalog:",
+    "oxfmt": "catalog:quality",
+    "oxlint": "catalog:quality",
+    "typescript": "catalog:build",
+    "vitest": "catalog:"
+  }
 }

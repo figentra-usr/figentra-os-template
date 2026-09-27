@@ -276,6 +276,9 @@ importers:
 
   packages/tooling/oxlint:
     devDependencies:
+      '@figentra/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest
       oxfmt:
         specifier: catalog:quality
         version: 0.70.0
@@ -314,6 +317,9 @@ importers:
       '@figentra/typescript-config':
         specifier: workspace:*
         version: link:../typescript
+      '@figentra/vitest-config':
+        specifier: workspace:*
+        version: link:../vitest
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.3
@@ -358,7 +364,32 @@ importers:
         specifier: catalog:build
         version: 7.0.2
 
-  services/api: {}
+  services/api:
+    devDependencies:
+      '@figentra/oxlint-config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/oxlint
+      '@figentra/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/typescript
+      '@figentra/vitest-config':
+        specifier: workspace:*
+        version: link:../../packages/tooling/vitest
+      '@types/node':
+        specifier: 'catalog:'
+        version: 26.6.3
+      oxfmt:
+        specifier: catalog:quality
+        version: 0.70.0
+      oxlint:
+        specifier: catalog:quality
+        version: 1.85.0
+      typescript:
+        specifier: catalog:build
+        version: 7.0.2
+      vitest:
+        specifier: 'catalog:'
+        version: 5.0.2(@types/node@26.6.3)(vite@8.3.1(@types/node@26.6.3)(jiti@2.7.0)(yaml@2.9.1))
 
 packages:
 

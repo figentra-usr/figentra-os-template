@@ -6,6 +6,10 @@
     "url": "https://github.com/figentra-usr/figentra-os-template",
     "directory": "packages/tooling/vitest"
   },
+  "files": [
+    "*.ts",
+    "README.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./vitest.ts",

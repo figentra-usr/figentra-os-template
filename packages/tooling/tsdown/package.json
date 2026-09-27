@@ -6,6 +6,10 @@
     "url": "https://github.com/figentra-usr/figentra-os-template",
     "directory": "packages/tooling/tsdown"
   },
+  "files": [
+    "*.ts",
+    "README.md"
+  ],
   "type": "module",
   "exports": {
     ".": "./index.ts"
@@ -24,6 +28,7 @@
   },
   "devDependencies": {
     "@figentra/typescript-config": "workspace:*",
+    "@figentra/vitest-config": "workspace:*",
     "@types/node": "catalog:",
     "oxfmt": "catalog:quality",
     "typescript": "catalog:build",

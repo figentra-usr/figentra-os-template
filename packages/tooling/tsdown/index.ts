@@ -1,4 +1,4 @@
-import { defineConfig, type Options } from 'tsdown';
+import { defineConfig, type UserConfig } from 'tsdown';
 
 export interface LibraryOptions {
   /**
@@ -24,8 +24,17 @@ const DECORATOR_CONFLICT = /`transform\.decorator`/;
 /**
  * tsdown shallow-merges `inputOptions`, so the function form is required to add `transform.decorator`
  * without dropping the `target` / `define` / `inject` tsdown already derived.
+ *
+ * `UserConfig['inputOptions']` is `InputOptions | ((options, format, context) => ...)` — a union with a
+ * non-function member, so TS won't contextually type a bare arrow function assigned to it directly.
+ * `Extract` pulls just the function member so `input`'s type (and the unused extra params) infer correctly.
  */
-const withDecorators: NonNullable<Options['inputOptions']> = (input) => ({
+type InputOptionsFn = Extract<
+  NonNullable<UserConfig['inputOptions']>,
+  (...args: never[]) => unknown
+>;
+
+const withDecorators: InputOptionsFn = (input) => ({
   ...input,
   transform: {
     ...input.transform,
